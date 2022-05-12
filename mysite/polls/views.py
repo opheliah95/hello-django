@@ -1,8 +1,4 @@
 import os
-import django
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mysite.settings')
-django.setup()
-
 from django.http import HttpResponse
 from .models import Question
 
