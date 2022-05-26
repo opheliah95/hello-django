@@ -14,12 +14,12 @@ from pathlib import Path
 import os
 from dotenv import load_dotenv
 
-#load in the environment file
+# load in the environment file
 load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = os.environ["SECRET_KEY"]
 
 
 # Quick-start development settings - unsuitable for production
@@ -27,9 +27,9 @@ SECRET_KEY = os.environ['SECRET_KEY']
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ['DEBUG_VALUE']
+DEBUG = os.environ["DEBUG_VALUE"]
 
-ALLOWED_HOSTS = ["hobbypollapp.herokuapp.com"]
+ALLOWED_HOSTS = ["hobbypollapp.herokuapp.com", "127.0.0.1"]
 
 
 # Application definition
