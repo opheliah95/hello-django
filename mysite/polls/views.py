@@ -6,7 +6,7 @@ from django.template import loader
 # return some basic rendering for index page
 def index(request):
     latest_questions = Question.objects.order_by('-pub_date')[:5]
-    template = loader.get_template('polls/templates/index.html')
+    template = loader.get_template('polls/index.html')
     context = {
         'latest_questions': latest_questions,
     }

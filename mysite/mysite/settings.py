@@ -59,7 +59,8 @@ ROOT_URLCONF = "mysite.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": ["polls/templates"],
+        "DIRS": [os.path.join(BASE_DIR, 'templates'),
+                 os.path.join(BASE_DIR, 'polls', 'templates', 'polls')],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -71,6 +72,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = "mysite.wsgi.application"
 
