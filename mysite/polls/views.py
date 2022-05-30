@@ -29,8 +29,12 @@ def detail(request, question_id):
 
 # view for result page
 def result(request, question_id):
-    response = "You're looking at the results of question %s."
-    return HttpResponse(response % question_id)
+    question = get_object_or_404(Question, pk=question_id)
+    try:
+        context = {"question" : question}
+    except Question.DoesNotExist:
+        raise Http404(f"the question {question_id} does not exist")
+    return render (request, "polls/results.html", context)
 
 
 # the vote page
