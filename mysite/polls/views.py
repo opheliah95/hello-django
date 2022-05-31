@@ -1,41 +1,28 @@
-import os
-from django.http import HttpResponse, HttpResponseRedirect
+
+from django.http import HttpResponseRedirect
 from .models import Question, Choice
-from django.template import loader
 from django.shortcuts import render, get_object_or_404
-from django.http import Http404
 from django.urls import reverse
+from django.views import generic
 
 # return some basic rendering for index page
-def index(request):
-    latest_questions = Question.objects.order_by("-pub_date")[:5]
-    template = loader.get_template("polls/index.html")
-    context = {
-        "latest_questions": latest_questions,
-    }
-    return render(request, "polls/index.html", context)
+class IndexView(generic.ListView):
+    template_name = 'polls/index.html'
+    context_object_name = 'latest_question_list'
+
+    def get_queryset(self):
+        """Return the last five published questions."""
+        return Question.objects.order_by('-pub_date')[:5]
 
 
-# view index for detail page
-def detail(request, question_id):
-    try:
-        question = Question.objects.get(pk=question_id)
-        context = {"question": question}
-    except Question.DoesNotExist:
-        raise Http404(f"the question {question_id} does not exist")
-
-    return render(request, "polls/detail.html", context)
+class DetailView(generic.DetailView):
+    model = Question
+    template_name = 'polls/detail.html'
 
 
-# view for result page
-def result(request, question_id):
-    question = get_object_or_404(Question, pk=question_id)
-    try:
-        context = {"question" : question}
-    except Question.DoesNotExist:
-        raise Http404(f"the question {question_id} does not exist")
-    return render (request, "polls/results.html", context)
-
+class ResultsView(generic.DetailView):
+    model = Question
+    template_name = 'polls/results.html'
 
 # the vote page
 def vote(request, question_id):
