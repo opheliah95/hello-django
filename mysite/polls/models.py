@@ -17,7 +17,8 @@ class Question(models.Model):
 
     # check if question is published recently
     def is_recent(self) -> bool:
-        return self.pub_date > timezone.now() - datetime.timedelta(days=1)
+        now = timezone.now()
+        return now >= self.pub_date > timezone.now() - datetime.timedelta(days=1)
 
 
 #  class for choice
