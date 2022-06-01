@@ -1,19 +1,29 @@
 FROM postgres:14.1-alpine
 
 # add sudo utility
-RUN apk add --no-cache sudo 
+RUN apk add sudo &&\
+    apk add openrc
 EXPOSE 5432
-RUN chmod 666 /var/lib/postgresql
-RUN sudo mkdir -p /usr/local/var/postgres && chmod 775 /usr/local/var/postgres
-RUN sudo chown postgres /usr/local/var/postgres
 
 # use a dump file to generate a db
 COPY polls.sql .
 RUN export PGDATA=/var/lib/postgresql/data
-RUN sudo -u postgres initdb -D /var/lib/postgresql/data
-RUN sudo -u postgres pg_ctl start -D /var/lib/postgresql/data
 
 # gather environ vars
 COPY .env .
 CMD source .env 
+
+# we already have a postgres user and postgres group so don't need to create any
+USER postgres
+RUN chmod 775 /var/lib/postgresql/data
+
+
+RUN initdb -D /var/lib/postgresql/data &&\
+    echo "host all  all    0.0.0.0/0  md5" >> /var/lib/postgresql/data/pg_hba.conf &&\
+    echo "listen_addresses='*'" >> /var/lib/postgresql/data/postgresql.conf &&\
+    pg_ctl start &&\
+    psql -U postgres -tc "SELECT 1 FROM pg_database WHERE datname = 'main'" | grep -q 1 || psql -U postgres -c "CREATE DATABASE main" &&\
+    psql -c "ALTER USER postgres WITH ENCRYPTED PASSWORD '${POSTGRES_PASSWORD}';"
+
+
 CMD ["postgres"]
