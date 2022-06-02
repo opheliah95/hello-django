@@ -21,3 +21,7 @@ urlpatterns = [
     path('polls/', include('polls.urls')),
     path('', views.index )
 ]
+
+# fix for django admin css
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+urlpatterns += staticfiles_urlpatterns()
