@@ -32,7 +32,7 @@ POSTGRES_HOST = os.getenv("PSQL_HOST", "127.0.0.1")
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ["DEBUG_VALUE"]
+DEBUG = (os.environ["DEBUG_VALUE"] == 'True')
 
 ALLOWED_HOSTS = ["hobbypollapp.herokuapp.com", "127.0.0.1"]
 
