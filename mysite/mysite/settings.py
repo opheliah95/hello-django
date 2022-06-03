@@ -65,7 +65,6 @@ TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [
-            os.path.join(BASE_DIR, "templates"),
             os.path.join(BASE_DIR, "polls", "templates", "polls"),
         ],
         "APP_DIRS": True,
@@ -142,3 +141,5 @@ STATIC_ROOT = 'staticfiles'
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 django_heroku.settings(locals())
+
+FIXTURE_DIRS = (os.path.join(BASE_DIR, 'fixtures'),)
