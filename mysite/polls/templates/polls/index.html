@@ -16,6 +16,7 @@
 <body>
     <main>
         {% if latest_questions %}
+        <h1>All Questions</h1>
         <ul class="gradient-list">
             {% for question in latest_questions %}
             <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
