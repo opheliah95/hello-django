@@ -6,10 +6,10 @@ WORKDIR /code
 # install missing dependency
 RUN apt-get update && apt-get upgrade -y && apt-get install -y gcc
 
-# copy requirement file
-COPY requirement.txt .
+# copy requirements file
+COPY requirements.txt .
 RUN echo "$PWD"
 
 # activate venv
-RUN  pip install -r requirement.txt
+RUN  pip install -r requirements.txt
 COPY . /code/
