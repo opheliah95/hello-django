@@ -19,14 +19,12 @@ services:
     build: .
     volumes:
       - web_data:/code
-    command: 
-      python mysite/manage.py runserver 0.0.0.0:8000
+    command: >
+      bash -c "python mysite/manage.py migrate && \
+               python mysite/manage.py runserver 0.0.0.0:8000 "
+     
     ports:
       - "8000:8000"
     depends_on:
       - psql
     
-
-networks:
-  django-network:
-    name: django-network
