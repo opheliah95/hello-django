@@ -1,0 +1,50 @@
+version: 2.1
+
+orbs:
+  heroku: circleci/heroku@0.0.10 # Invoke the Heroku orb
+
+workflows:
+  heroku_deploy:
+    jobs:
+      - build
+      - heroku/deploy-via-git: # Use the pre-configured job, deploy-via-git
+          requires:
+            - build
+          filters:
+            branches:
+              only: sequential-branch-filter
+jobs:
+  build:
+       working_directory: /app # directory to save the build
+    docker:
+      - image: docker:17.05.0-ce-git # docker image version
+    steps:
+      # required by every job
+      - checkout
+      # setup docker in remote machine
+      - setup_remote_docker
+      # set up remote docker-compose
+      - run:
+          name: Install Docker Compose
+          environment:
+            COMPOSE_VERSION: '1.29.2'
+          command: |
+            curl -L "https://github.com/docker/compose/releases/download/${COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" -o ~/docker-compose
+            chmod +x ~/docker-compose
+            sudo mv ~/docker-compose /usr/local/bin/docker-compose
+      - run:
+          name: Build images of services declared in docker-compose.yml
+          command: docker-compose build
+      - run:
+          name: Start all services declared in docker-compose.yml
+          command: docker-compose up -d
+      - run:
+          name: Start docker-compose and verify service(s)
+          command: |
+            docker container run --network container:hello_django_web_1 \
+              -wait http://localhost:8000/ \
+              -wait-retry-interval 2s \
+              -timeout 20s
+
+
+
