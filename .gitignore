@@ -139,3 +139,4 @@ GitHub.sublime-settings
 # data
 *fixtures/
 *data*
+*env
