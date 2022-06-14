@@ -15,7 +15,7 @@ workflows:
               only: sequential-branch-filter
 jobs:
   build:
-       working_directory: /app # directory to save the build
+    working_directory: /app # directory to save the build
     docker:
       - image: docker:17.05.0-ce-git # docker image version
     steps:
