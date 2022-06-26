@@ -136,6 +136,11 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 
+# add static file dir
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
 # add static root to serve in production
 STATIC_ROOT=os.path.join(BASE_DIR, 'staticfiles')
 
