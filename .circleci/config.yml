@@ -23,6 +23,12 @@ jobs:
       - checkout
       # setup docker in remote machine
       - setup_remote_docker
+      # install missing packages
+      - run:
+        name: install curl
+        command: |
+          apk update && apk install curl
+
       # set up remote docker-compose
       - run:
           name: Install Docker Compose
