@@ -28,7 +28,7 @@ jobs:
       - run:
           name: install curl
           command: |
-            apk update && apk install curl
+            apk update && apk add curl
 
       # set up remote docker-compose
       - run:
