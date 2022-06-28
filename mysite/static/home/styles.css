@@ -31,3 +31,14 @@
 .text-white{
     color: #fff;
 }
+
+.hero .content{
+    text-align: center;
+    font-family: 'Raleway', sans-serif;
+    font-size: 3em;
+}
+
+.fnt-small{
+    font-family: 'Raleway', sans-serif;
+    font-size: 1em;
+}
