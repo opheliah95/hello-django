@@ -30,12 +30,17 @@ jobs:
           command: |
             apk update && apk upgrade && apk add -U curl
 
+      # install python 3
+      - run:
+          name: Install Python 3
+          command: 
+            apk add --no-cache python3
+
       # set up remote docker-compose
       - run:
-          name: Install Docker Compose
-          command: |
-            apk add --no-cache python3
-            pip3 install 'docker-compose'
+          name: Install docker-compose
+          command: 
+            pip3 install docker-compose
       - run:
           name: Build images of services declared in docker-compose.yml
           command: docker-compose build
