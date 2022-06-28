@@ -35,6 +35,9 @@ jobs:
           name: Install Python 3
           command: |
             apk add --no-cache python3
+      - run:
+          name: Install Pip
+          command: |
             pip install --upgrade pip
             pip3 install --upgrade pip
 
