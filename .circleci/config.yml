@@ -35,7 +35,7 @@ jobs:
           name: Install Docker Compose
           command: |
             apk add 'py-pip'
-            pip install 'docker-compose==1.29.2'
+            pip install 'docker-compose'
       - run:
           name: Build images of services declared in docker-compose.yml
           command: docker-compose build
