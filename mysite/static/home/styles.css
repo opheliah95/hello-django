@@ -5,9 +5,16 @@
     bottom: 0;
     text-align: center;
 }
+
 .sm-icons {
     text-align: center;
     padding:10px;
+}
+
+.sm-contact {
+    margin-top: 0.5em;
+    margin-bottom: 0.8em;
+    font-weight: bold;
 }
 
 .github:hover, 
@@ -46,8 +53,30 @@
     font-size: 2em;
 }
 
+.fnt-medium-1{
+    font-family: 'Raleway', sans-serif;
+    font-size: 1.3em;
+}
+
 .fnt-big{
     font-family: 'Raleway', sans-serif;
     font-size: 3em;
+}
+
+a {
+    color: #ffffff;
+}
+
+a .author {
+    color: #acacac;
+    line-height: 40px;
+    font-size: 16px;
+    transition: all 0.2s;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 2px;
+  }
+  
+a:hover {
+    color: #E0952E;
 }
 
