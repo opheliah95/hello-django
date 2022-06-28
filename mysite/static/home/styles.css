@@ -1,7 +1,5 @@
 .social-media{
     background-color: #33383c;
-    font-family: 'Raleway', sans-serif;
-    font-size: 3em;
     position: absolute;
     width: 100%;
     bottom: 0;
@@ -42,3 +40,14 @@
     font-family: 'Raleway', sans-serif;
     font-size: 1em;
 }
+
+.fnt-medium{
+    font-family: 'Raleway', sans-serif;
+    font-size: 2em;
+}
+
+.fnt-big{
+    font-family: 'Raleway', sans-serif;
+    font-size: 3em;
+}
+
