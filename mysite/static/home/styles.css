@@ -1,0 +1,33 @@
+.social-media{
+    background-color: #33383c;
+    font-family: 'Raleway', sans-serif;
+    font-size: 3em;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    text-align: center;
+}
+.sm-icons {
+    text-align: center;
+    padding:10px;
+}
+
+.github:hover, 
+.twitter:hover {
+    transform: rotate(360deg);
+    transition: all 0.5s;
+}
+
+.footer-heading {
+    text-transform: uppercase;   
+}
+
+.highlight{
+    text-underline-offset: 4px;
+    text-decoration: underline;
+    text-decoration-color:#E0952E;
+
+}
+.text-white{
+    color: #fff;
+}

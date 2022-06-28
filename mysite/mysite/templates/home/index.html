@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!--add css stylesheet-->
+    <link rel="stylesheet" type="text/css" href="{% static 'home/styles.css' %}">
+    <!--added frontawesome-->
+    <script src="https://kit.fontawesome.com/1ee24f00e4.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <!--everyone loves some confetti, why not? -->
@@ -12,6 +17,23 @@
         import confetti from 'https://cdn.skypack.dev/canvas-confetti';
         confetti();
     </script>
+    <h1>Vote your favourite topics!</h1>
     <p> Welcome to everyone's favourite voting app</p>
+
+    <!-- footer for the social media-->
+   <footer>
+    <div class="social-media">
+        <div class="sm-contact footer-heading text-white highlight">
+            Follow Me
+        </div>
+        <div class="sm-icons text-white">
+            <i class="fa-brands fa-github github"></i>
+            <i class="fa-brands fa-twitter twitter"></i>
+        </div>
+        <div class="sm-copyright text-white">
+            Copyright © 2022 MIT License <a>opheliah95</a>.
+        </div>
+    </div>
+   </footer>
 </body>
 </html>
