@@ -19,6 +19,10 @@ jobs:
     docker:
       - image: cimg/python:3.9 # docker image version
     steps:
+      # create the directory
+      - run:
+          command: |
+            mkdir -p /app
       # required by every job
       - checkout
 
