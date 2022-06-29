@@ -19,6 +19,7 @@ class Circle {
         // params for offset
         this.dx = Math.random() * 10 + 10;
         this.dy = Math.random() * 10 + 10;
+        this.generate_seed();
     }
 
      // function to draw a single circle
@@ -31,8 +32,17 @@ class Circle {
 
     // function to animate the circle
     animate() {
+        // how we move this normally
         this.x += this.dx;
         this.y += this.dy;
+
+        if (this.x + this.r > canvas.width || this.x < this.r){
+                this.dx *= -1;
+        }
+        else if (this.y + this.r > canvas.height || this.y < this.r){
+            this.dy *= -1;
+        }
+       
         this.draw();
     }
 
@@ -41,7 +51,7 @@ class Circle {
         var seed = Math.floor(Math.random() * 2) == 1 ? 1 : -1;
         this.dx *= seed;
         this.dy *= seed;
-        console.log(f`hello: {seed}`)
+        console.log(`hello: ${seed}`)
     }
 }
 
@@ -61,7 +71,6 @@ function Update() {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     for (let i = 0; i < balls_amount; i++) {
         bubbles[i].animate();
-        bubbles[i].generate_seed();
     }
 }
 
