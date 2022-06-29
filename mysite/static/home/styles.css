@@ -4,6 +4,7 @@
     width: 100%;
     bottom: 0;
     text-align: center;
+    padding: 0;
 }
 
 .sm-icons {
@@ -109,4 +110,24 @@ span {
 
 button:hover span{
     width: 100%;
+}
+
+canvas{
+    background-color: rgb(233, 226, 255);
+    position: absolute;
+    z-index: -100;
+    left: 0px;
+    top: 0px;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+}
+
+footer{
+    z-index: 1;
+}
+
+.hero{
+    z-index: 1;
 }
