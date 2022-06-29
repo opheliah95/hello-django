@@ -22,7 +22,7 @@ jobs:
       # create the directory
       - run:
           command: |
-            ls -la /
+            echo $( ls -la ) /
             sudo chown -R $USER:$USER /
             sudo mkdir -p /app
       # required by every job
