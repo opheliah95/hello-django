@@ -38,7 +38,6 @@ jobs:
       - run:
           name: Install Pip
           command: |
-            pip install --upgrade pip
             pip3 install --upgrade pip
 
       # set up remote docker-compose
