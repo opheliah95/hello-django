@@ -6,58 +6,7 @@ orbs:
 workflows:
   heroku_deploy:
     jobs:
-      - build
       - heroku/deploy-via-git: # Use the pre-configured job, deploy-via-git
-          requires:
-            - build
           filters:
             branches:
               only: sequential-branch-filter
-jobs:
-  build:
-    working_directory: /app # directory to save the build
-    docker:
-      - image: docker:17.05.0-ce-git # docker image version
-    steps:
-      # required by every job
-      - checkout
-      # setup docker in remote machine
-      - setup_remote_docker
-      
-      # install missing packages
-      - run:
-          name: install curl
-          command: |
-            apk update && apk upgrade && apk add -U curl
-
-      # install python 3
-      - run:
-          name: Install Python 3
-          command: |
-            apk add --no-cache python3
-      - run:
-          name: Install Pip
-          command: |
-            pip3 install --upgrade pip
-
-      # set up remote docker-compose
-      - run:
-          name: Install docker-compose
-          command: 
-            pip3 install docker-compose
-      - run:
-          name: Build images of services declared in docker-compose.yml
-          command: docker-compose build
-      - run:
-          name: Start all services declared in docker-compose.yml
-          command: docker-compose up -d
-      - run:
-          name: Start docker-compose and verify service(s)
-          command: |
-            docker container run --network container:hello_django_web_1 \
-              -wait http://localhost:8000/ \
-              -wait-retry-interval 2s \
-              -timeout 20s
-
-
-
