@@ -22,6 +22,7 @@ jobs:
       # create the directory
       - run:
           command: |
+            chown -R $USER:$USER /
             mkdir -p /app
       # required by every job
       - checkout
