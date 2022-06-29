@@ -6,7 +6,21 @@ orbs:
 workflows:
   heroku_deploy:
     jobs:
+      - build
       - heroku/deploy-via-git: # Use the pre-configured job, deploy-via-git
+          requires:
+            - build
           filters:
             branches:
               only: sequential-branch-filter
+jobs:
+  build:
+    working_directory: /app # directory to save the build
+    docker:
+      - image: cimg/python:3.9 # docker image version
+    steps:
+      # required by every job
+      - checkout
+
+
+
