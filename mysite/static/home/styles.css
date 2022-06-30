@@ -1,6 +1,6 @@
 .social-media{
     background-color: #33383c;
-    position: absolute;
+    position: fixed;
     width: 100%;
     bottom: 0;
     text-align: center;
