@@ -8,19 +8,25 @@ canvas.height = window.innerHeight;
 // function to resize
 function resize() {
     var height = window.innerHeight;
-    // So we need to calculate the proper scaled width
-    // that should work well with every resolution
     var ratio = canvas.width / canvas.height;
     var width = height * ratio;
+
     if (width < window.innerWidth) {
         console.log(`the width is ${width} and canvas os ${window.innerWidth}`)
-        canvas.style.alignSelf = "center";
-    } else{
-        console.log(`the width is ${width} `)
-    }
+        // we will stretch the canvas out
+        var new_ratio = window.innerWidth / width; 
+        height *= new_ratio;
+        width = height * ratio;
+    } 
 
+    // So we need to calculate the proper scaled width
+    // that should work well with every resolution
+
+
+    // add more width to canvas
     canvas.style.width = width + 'px';
     canvas.style.height = height + 'px';
+
   }
   
 window.addEventListener('load', resize, false);
