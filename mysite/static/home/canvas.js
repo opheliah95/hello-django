@@ -1,9 +1,30 @@
 // a class for canvas
 const canvas = document.getElementById("sandbox");
-console.log(canvas);
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
+
+
+// function to resize
+function resize() {
+    var height = window.innerHeight;
+    // So we need to calculate the proper scaled width
+    // that should work well with every resolution
+    var ratio = canvas.width / canvas.height;
+    var width = height * ratio;
+    if (width < window.innerWidth) {
+        console.log(`the width is ${width} and canvas os ${window.innerWidth}`)
+        canvas.style.alignSelf = "center";
+    } else{
+        console.log(`the width is ${width} `)
+    }
+
+    canvas.style.width = width + 'px';
+    canvas.style.height = height + 'px';
+  }
+  
+window.addEventListener('load', resize, false);
+window.addEventListener('resize', resize, false);
 
 const ctx = canvas.getContext("2d");
 
@@ -85,7 +106,7 @@ function getRndColor() {
 // function to update object
 function Update() {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
-    for (let i = 0; i < balls_amount; i++) {
+    for (let i = 0; i < bubbles.length; i++) {
         bubbles[i].animate();
     }
 }
@@ -100,3 +121,10 @@ function init() {
 }
 
 init()
+
+// function for user to add bubble
+canvas.addEventListener('click', function(e){
+    let r = Math.floor(Math.random() * 20) + 15;
+    bubbles.push(new Circle(ctx, e.clientX, e.clientY, r))
+    console.log(bubbles.length)
+})

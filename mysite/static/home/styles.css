@@ -38,6 +38,8 @@
     color: #fff;
 }
 
+
+
 .hero .content{
     text-align: center;
     font-family: 'Raleway', sans-serif;
@@ -118,10 +120,13 @@ canvas{
     z-index: -100;
     left: 0px;
     top: 0px;
-    margin: 0;
+    margin: 0 auto;
     padding: 0;
     height: 100vh;
     width: 100vw;
+    display: block;
+    background-size: cover;
+    background-repeat: repeat;
 }
 
 footer{
