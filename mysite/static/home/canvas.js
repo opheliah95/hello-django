@@ -14,7 +14,7 @@ class Circle {
         this.x = x;
         this.y = y;
         this.r = r;
-        this.c = c;
+        this.c = getRndColor();
 
         // params for offset
         this.dx = Math.random() * 10 + 10;
@@ -25,7 +25,14 @@ class Circle {
      // function to draw a single circle
      draw() {
         ctx.beginPath();
-        ctx.fillStyle = this.c;
+        // gradient for fill
+        // Create gradient
+        var grd = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.r);
+        grd.addColorStop(0, "white");
+        grd.addColorStop(0.1, "white");
+        grd.addColorStop(0.7, this.c);
+        grd.addColorStop(1, "white");
+        ctx.fillStyle = grd;
         ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI);
         ctx.fill();
     }
@@ -67,6 +74,15 @@ class Circle {
     bubbles.push(new Circle(ctx, x, y, r, c));
 }
 
+// function to generate random color for fill
+function getRndColor() {
+    var r = 255*Math.random()|0,
+        g = 255*Math.random()|0,
+        b = 255*Math.random()|0;
+    return `rgb(${r}, ${g}, ${b}, 0.3)`;
+}
+
+// function to update object
 function Update() {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     for (let i = 0; i < balls_amount; i++) {
